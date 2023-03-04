@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SP2023_Assignment3_lrichardson.Models;
 
 namespace SP2023_Assignment3_lrichardson.Data
 {
@@ -9,5 +10,6 @@ namespace SP2023_Assignment3_lrichardson.Data
             : base(options)
         {
         }
+        public DbSet<SP2023_Assignment3_lrichardson.Models.Actors> Actors { get; set; }
     }
 }
