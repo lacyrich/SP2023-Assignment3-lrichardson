@@ -11,5 +11,7 @@ namespace SP2023_Assignment3_lrichardson.Data
         {
         }
         public DbSet<SP2023_Assignment3_lrichardson.Models.Actors> Actors { get; set; }
+        public DbSet<SP2023_Assignment3_lrichardson.Models.Movies> Movies { get; set; }
+        public DbSet<SP2023_Assignment3_lrichardson.Models.MoviesActors> MoviesActors { get; set; }
     }
 }

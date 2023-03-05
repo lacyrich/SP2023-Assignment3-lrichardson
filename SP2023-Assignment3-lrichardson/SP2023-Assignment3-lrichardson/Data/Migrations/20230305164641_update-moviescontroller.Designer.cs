@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SP2023_Assignment3_lrichardson.Data;
 
@@ -11,9 +12,10 @@ using SP2023_Assignment3_lrichardson.Data;
 namespace SP2023_Assignment3_lrichardson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230305164641_update-moviescontroller")]
+    partial class updatemoviescontroller
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,6 +265,9 @@ namespace SP2023_Assignment3_lrichardson.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("ActorID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -282,6 +287,8 @@ namespace SP2023_Assignment3_lrichardson.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActorID");
 
                     b.ToTable("Movies");
                 });
@@ -360,9 +367,18 @@ namespace SP2023_Assignment3_lrichardson.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SP2023_Assignment3_lrichardson.Models.Movies", b =>
+                {
+                    b.HasOne("SP2023_Assignment3_lrichardson.Models.Actors", "Actor")
+                        .WithMany()
+                        .HasForeignKey("ActorID");
+
+                    b.Navigation("Actor");
+                });
+
             modelBuilder.Entity("SP2023_Assignment3_lrichardson.Models.MoviesActors", b =>
                 {
-                    b.HasOne("SP2023_Assignment3_lrichardson.Models.Actors", "Actors")
+                    b.HasOne("SP2023_Assignment3_lrichardson.Models.Actors", "Actor")
                         .WithMany()
                         .HasForeignKey("ActorID");
 
@@ -370,7 +386,7 @@ namespace SP2023_Assignment3_lrichardson.Data.Migrations
                         .WithMany()
                         .HasForeignKey("MovieID");
 
-                    b.Navigation("Actors");
+                    b.Navigation("Actor");
 
                     b.Navigation("Movies");
                 });

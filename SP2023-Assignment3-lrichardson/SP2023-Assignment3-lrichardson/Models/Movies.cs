@@ -10,10 +10,5 @@ namespace SP2023_Assignment3_lrichardson.Models
         public string Genre { get; set; }
         public int ReleaseYear { get; set; }
         public byte[]? Poster { get; set; }
-
-
-        [ForeignKey("Actors")]
-        public int? ActorID { get; set; }
-        public Actors? Actor { get; set; }
     }
 }

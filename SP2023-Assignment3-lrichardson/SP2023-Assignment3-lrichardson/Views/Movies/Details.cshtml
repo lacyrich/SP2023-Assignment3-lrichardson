@@ -1,0 +1,95 @@
+﻿@model SP2023_Assignment3_lrichardson.Models.ActorsMoviesVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Movies</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movies.MovieTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movies.MovieTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movies.IMDBHyperlink)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movies.IMDBHyperlink)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movies.Genre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movies.Genre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movies.ReleaseYear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movies.ReleaseYear)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movies.Poster)
+        </dt>
+        <dd>
+            @if (Model.Movies.Poster != null)
+            {
+                <img width="120" height="150" src="@Url.Action("GetMoviePoster", "Movies", new {Model.Movies.Id})" />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Movies.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MoviesActors[0].Actors)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MoviesActors)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Actors.Name)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Twitter Sentiment Analysis</h2>
+<h3>Average Compound Score of Overall Sentiment Analysis: @ViewBag.CompoundScore</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Top 100 Tweets</th>
+            <th>Sentiment Analysis Compound Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tweet in ViewBag.TopTweets)
+        {
+            <tr>
+                <td>@tweet.Item1</td>
+                <td>@tweet.Item2</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SP2023_Assignment3_lrichardson.Data;
 
@@ -11,9 +12,10 @@ using SP2023_Assignment3_lrichardson.Data;
 namespace SP2023_Assignment3_lrichardson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230305170914_updates")]
+    partial class updates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -362,7 +364,7 @@ namespace SP2023_Assignment3_lrichardson.Data.Migrations
 
             modelBuilder.Entity("SP2023_Assignment3_lrichardson.Models.MoviesActors", b =>
                 {
-                    b.HasOne("SP2023_Assignment3_lrichardson.Models.Actors", "Actors")
+                    b.HasOne("SP2023_Assignment3_lrichardson.Models.Actors", "Actor")
                         .WithMany()
                         .HasForeignKey("ActorID");
 
@@ -370,7 +372,7 @@ namespace SP2023_Assignment3_lrichardson.Data.Migrations
                         .WithMany()
                         .HasForeignKey("MovieID");
 
-                    b.Navigation("Actors");
+                    b.Navigation("Actor");
 
                     b.Navigation("Movies");
                 });
