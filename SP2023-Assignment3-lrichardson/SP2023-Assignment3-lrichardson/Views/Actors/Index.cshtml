@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table id="actorsTable"class="table">
+<table id="actorsTable" class="display dataTable">
     <thead>
         <tr>
             <th>
@@ -63,5 +63,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#actorsTable').DataTable();
+        paging: true,
+        ordering: true,
+        searching: true
     });
 </script>

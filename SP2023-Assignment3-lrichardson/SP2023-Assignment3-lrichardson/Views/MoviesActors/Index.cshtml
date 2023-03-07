@@ -11,7 +11,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table id="moviesActorsTable"class="table">
+<table id="moviesActorsTable" class="display dataTable">
     <thead>
         <tr>
             <th>
@@ -45,5 +45,8 @@
 <script>
     $(document).ready(function () {
         $('#moviesActorsTable').DataTable();
+        paging: true,
+        ordering: true,
+        searching: true
     });
 </script>
