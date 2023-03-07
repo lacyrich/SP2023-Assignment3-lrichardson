@@ -38,8 +38,11 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Poster)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Poster)
+        <dd>
+            @if (Model.Poster != null)
+            {
+                <img width="120" height="150" src="@Url.Action("GetMoviePoster", "Movies", new {Model.Id})" />
+            }
         </dd>
     </dl>
     
